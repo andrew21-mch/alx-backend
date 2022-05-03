@@ -27,7 +27,9 @@ class Server:
 
     def index_range(self, page: int, page_size: int) -> tuple:
         """ create a tuple containing page and the page_size """
-        return ((page - 1) * page_size, (page - 1) * page_size +page_size)
+        start_index = (page - 1) * page_size
+        end_index = start_index + page_size
+        return (start_index, end_index)
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """ get items in a page """
@@ -44,5 +46,3 @@ class Server:
             return list_result
 
         return data[start:end]
-s = Server()
-print(s.get_page(5,12))
