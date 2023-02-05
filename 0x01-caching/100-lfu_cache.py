@@ -10,14 +10,14 @@ BaseCaching = __import__("base_caching").BaseCaching
 
 
 class HeapItemStatus(Enum):
-    """ HeapItemStatus
+    """ HeapItemStatus Enum
     """
     ACTIVE = 1
     INACTIVE = 2
 
 
 class LFUCache(BaseCaching):
-    """ LFUCache """
+    """ LFUCache class """
 
     def __init__(self):
         """ Initialize the class
