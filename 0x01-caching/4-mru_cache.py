@@ -10,12 +10,12 @@ class MRUCache(BaseCaching):
     """ MRU Caching """
 
     def __init__(self):
-        """ initilize """
+        """ initilize the class """
         super().__init__()
         self.queue = deque()
 
     def put(self, key, item):
-        """ put """
+        """ put method to add an item in the cache """
         if key and item:
             if key in self.cache_data:
                 self.queue.remove(key)
@@ -27,7 +27,7 @@ class MRUCache(BaseCaching):
             self.cache_data[key] = item
 
     def get(self, key):
-        """ get """
+        """ get method to get an item by key """
         if key in self.cache_data:
             self.queue.remove(key)
             self.queue.append(key)

@@ -15,7 +15,7 @@ class LRUCache(BaseCaching):
         self.queue = deque()
 
     def put(self, key, item):
-        """ put """
+        """ put method to add an item in the cache """
         if key and item:
             if key in self.cache_data:
                 self.queue.remove(key)
@@ -27,7 +27,7 @@ class LRUCache(BaseCaching):
             self.cache_data[key] = item
 
     def get(self, key):
-        """ get """
+        """ get method to get an item by key """
         if key in self.cache_data:
             self.queue.remove(key)
             self.queue.append(key)
