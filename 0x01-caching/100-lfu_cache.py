@@ -20,7 +20,7 @@ class LFUCache(BaseCaching):
     """ LFUCache """
 
     def __init__(self):
-        """ Init
+        """ Initialize the class
         """
         super().__init__()
         self.heap = []
@@ -28,7 +28,7 @@ class LFUCache(BaseCaching):
         self.counter = count()
 
     def put(self, key, item):
-        """ put """
+        """ put method to add an item in the cache """
         if key and item:
             if key in self.cache_data:
                 self.rehydrate(key)
@@ -39,7 +39,7 @@ class LFUCache(BaseCaching):
             self.cache_data[key] = item
 
     def get(self, key):
-        """ get """
+        """ get method to get an item by key """
         if key in self.cache_data:
             self.rehydrate(key)
             return self.cache_data.get(key)
@@ -49,7 +49,7 @@ class LFUCache(BaseCaching):
         return len(self.cache_data) >= self.MAX_ITEMS
 
     def evict(self):
-        """ evict """
+        """ evict item from cache """
         while self.heap:
             _, __, item, status = heappop(self.heap)
             if status == HeapItemStatus.ACTIVE:
