@@ -7,7 +7,7 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 
 class LRUCache(BaseCaching):
-    """ LRU """
+    """ LRU Caching """
 
     def __init__(self):
         """ constructor """

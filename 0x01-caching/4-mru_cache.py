@@ -7,7 +7,7 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 
 class MRUCache(BaseCaching):
-    """ MRU """
+    """ MRU Caching """
 
     def __init__(self):
         """ initilize """
