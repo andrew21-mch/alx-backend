@@ -5,7 +5,8 @@ Deletion-resilient hypermedia pagination
 
 import csv
 import math
-from typing import Dict, List
+from typing import List, Dict
+
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -16,7 +17,7 @@ class Server:
         self.__dataset = None
         self.__indexed_dataset = None
 
-    def dataset(self) -> List[List]:
+    def dataset(self) -> List[List]:  # sourcery skip: identity-comprehension
         """Cached dataset
         """
         if self.__dataset is None:
@@ -38,18 +39,34 @@ class Server:
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: int = None, page_size: int = 10) -> dict:
-        """ hyper index """
-        requested_data = []
-        next = index + page_size
-        for idx in range(index, index + page_size):
-            if not self.indexed_dataset().get(idx):
-                next += 1
-            requested_data.append(self.indexed_dataset()[idx])
-        result = {
-            'data': requested_data,
+    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+        """ Deletion-resilient hypermedia pagination """
+
+        idx_dataset = self.indexed_dataset()
+
+        assert isinstance(index, int) and index < (len(idx_dataset) - 1)
+
+        i, mv, data = 0, index, []
+        while (i < page_size and index < len(idx_dataset)):
+            value = idx_dataset.get(mv, None)
+            if value:
+                data.append(value)
+                i += 1
+            mv += 1
+
+        next_index = None
+        while (mv < len(idx_dataset)):
+            value = idx_dataset.get(mv, None)
+            if value:
+                next_index = mv
+                break
+            mv += 1
+
+        hyper = {
             'index': index,
-            'next_index': next,
-            'page_size': page_size
+            'next_index': next_index,
+            'page_size': page_size,
+            'data': data
         }
-        return result
+
+        return hyper
