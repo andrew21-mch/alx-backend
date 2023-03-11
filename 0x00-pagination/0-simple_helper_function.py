@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-""" 
-    Write a function named index_range that takes
-    two integer arguments page and page_size.
-"""
+'''
+    Simple helper function.
+'''
 
-def index_range(self, page: int, page_size: int) -> tuple:
-    """ create a tuple containing page and the page_size """
-    start_index = (page - 1) * page_size
-    end_index = start_index + page_size
-    return (start_index, end_index)
+
+def index_range(page, page_size):
+    '''
+        Returns the range of indexes for a given page.
+    '''
+    start = (page - 1) * page_size
+    end = page * page_size
+    return start, end
