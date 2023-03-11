@@ -7,7 +7,6 @@ import csv
 import math
 from typing import Dict, List
 
-
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -48,10 +47,9 @@ class Server:
                 next += 1
             requested_data.append(self.indexed_dataset()[idx])
         result = {
-                  'data': requested_data,
-                  'index': index,
-                  'next_index': next,
-                  'page_size': page_size
-                  }
+            'data': requested_data,
+            'index': index,
+            'next_index': next,
+            'page_size': page_size
+        }
         return result
-    

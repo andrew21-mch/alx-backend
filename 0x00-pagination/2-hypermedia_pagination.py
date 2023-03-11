@@ -1,12 +1,8 @@
 #!/usr/bin/env python3
 """ implemented a Server class to work with data """
-
-
 import csv
 import math
 from typing import List
-
-
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -65,4 +61,3 @@ class Server:
         }
 
         return hyper_data
-    

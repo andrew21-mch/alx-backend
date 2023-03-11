@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 """ implemented a Server class to work with data """
 
-
 import csv
 from typing import List
-
-
 class Server:
     """Server class to paginate a database of popular baby names.
     """

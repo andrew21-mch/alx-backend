@@ -66,7 +66,7 @@ class LFUCache(BaseCaching):
         self.add_to_heap(key, entry[0])
 
     def add_to_heap(self, key, count=0):
-        """ Adds a new entry into heap.
+        """ Adds a new entry into a heap.
         """
         entry = [1 + count, next(self.counter), key, HeapItemStatus.ACTIVE]
         self.map[key] = entry
